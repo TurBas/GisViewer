@@ -1,4 +1,6 @@
 module.exports = function(grunt){
+    // Load grunt tasks automatically
+    require('load-grunt-tasks')(grunt);
 
     var scripts = ['./src/client/app/**/*.js'];
 
@@ -21,9 +23,6 @@ module.exports = function(grunt){
             }
         }
     });
-
-    grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerInitTask("default", ["jshint"]);
     grunt.registerTask("test", ["karma"]);
