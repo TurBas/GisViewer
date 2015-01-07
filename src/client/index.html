@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Angular Test - GisViewer</title>
+</head>
+<body>
+    <div ng-controller="MapServer as vm">
+        {{ vm.message }}
+    </div>
+
+    <!-- Vendor scripts -->
+    <script src="../../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../../bower_components/angular/angular.js"></script>
+
+    <!-- Bootstrapping -->
+    <script src="../../src/client/app/app.module.js"></script>
+
+    <!-- Management -->
+    <script src="../../src/client/app/management/mapserver/mapserver.js"></script>
+</body>
+</html>
