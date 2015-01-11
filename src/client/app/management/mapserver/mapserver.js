@@ -9,12 +9,12 @@
     function MapServer() {
 
         var vm = this;
-        vm.message = 'Bye World';
+        vm.mapserver = {};
 
         activate();
 
         function activate() {
-            vm.message = 'Hello World';
+
         }
     }
 }());

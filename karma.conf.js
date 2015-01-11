@@ -26,6 +26,13 @@ module.exports = function(config) {
       './src/client/test/**/*.spec.js'
     ],
 
+    plugins:[
+      'karma-jasmine',
+      'karma-coverage',
+      'karma-chrome-launcher',
+      'karma-phantomjs-launcher'
+    ],
+
 
     // list of files to exclude
     exclude: [
@@ -35,13 +42,18 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      './src/client/app/**/*.js' : 'coverage'
     },
 
+    coverageReporter: {
+      type: 'html',
+      dir: 'reports/coverage/'
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
 
 
     // web server port

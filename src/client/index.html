@@ -3,20 +3,48 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Angular Test - GisViewer</title>
+    <style>
+        .ng-hide {
+            display: none!important;
+        }
+    </style>
+
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body>
-    <div ng-controller="MapServer as vm">
-        {{ vm.message }}
-    </div>
+    <form class="form-horizontal" ng-controller="MapServer as vm" name="mapserverForm">
+        <div class="form-group">
+            <!--http://ows.gis.rotterdam.nl/cgi-bin/mapserv.exe?map=d:\gwr\webdata\mapserver\map\schoon_pub.map-->
+            <label for="mapserverUrlInput" class="col-sm-1 control-label">Location</label>
+            <div class="col-sm-4">
+                <input id="mapserverUrlInput"
+                       name="mapserverUrlInput"
+                       placeholder="Insert URL of WebMapServer"
+                       type="search"
+                       class="form-control"
+                       ng-model="vm.mapserver.url"
+                       ng-model-options="{ debounce: 500 }"
+                       required
+                       tb-is-alive />
+            </div>
+            <button type="button" class="btn btn-success" ng-disabled="mapserverForm.mapserverUrlInput.$invalid || mapserverForm.mapserverUrlInput.$pending">Discover</button>
+        </div>
+    </form>
+
 
     <!-- Vendor scripts -->
     <script src="../../bower_components/jquery/dist/jquery.js"></script>
     <script src="../../bower_components/angular/angular.js"></script>
+    <script src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
     <!-- Bootstrapping -->
     <script src="../../src/client/app/app.module.js"></script>
 
     <!-- Management -->
     <script src="../../src/client/app/management/mapserver/mapserver.js"></script>
+    <script src="../../src/client/app/management/mapserver/mapserverService.js"></script>
+
+    <!-- Widgets -->
+    <script src="../../src/client/app/management/mapserver/directives/tbIsAlive.js"></script>
 </body>
 </html>
