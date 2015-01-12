@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body class="container-fluid">
-    <form class="form-horizontal" ng-controller="MapServer as vm" name="mapserverForm" novalidate>
+    <form class="form-horizontal" ng-controller="MapServer as vm" name="mapserverForm" ng-submit="vm.save()">
         <div class="form-group">
             <label for="mapserverUrlInput" class="col-sm-1 control-label">Location</label>
             <div class="col-sm-4">
@@ -38,6 +38,7 @@
                 </select>
             </div>
             <button class="btn btn-primary"
+                    type="button"
                     ng-disabled="mapserverForm.mapserverUrlInput.$invalid || mapserverForm.mapserverUrlInput.$pending"
                     ng-click="vm.getCapabilities()">
                 Discover
@@ -63,8 +64,7 @@
                           class="form-control"
                           ng-model="vm.mapserver.abstract"
                           rows="3"
-                          style="resize: none"
-                          required>
+                          style="resize: none">
                 </textarea>
             </div>
         </div>
@@ -79,22 +79,26 @@
                 </input>
             </div>
             <button class="btn btn-primary"
+                    type="button"
                     ng-click="vm.addKeyword()">
                 Add
             </button>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-if="vm.mapserver.keywords.length > 0">
             <div class="col-sm-1"></div>
             <div class="col-sm-4">
-                <div>
-                    <button
-                            class="btn btn-info btn-xs"
-                            style="margin:2px;"
-                            ng-repeat="keyword in vm.mapserver.keywords | orderBy"
-                            ng-click="vm.deleteKeyword(keyword)">
-                        <i class="glyphicon glyphicon-remove"></i>&nbsp;{{keyword}}
-                    </button>
-                </div>
+                <button
+                        class="btn btn-info btn-xs"
+                        style="margin:2px;"
+                        ng-repeat="keyword in vm.mapserver.keywords | orderBy"
+                        ng-click="vm.deleteKeyword(keyword)">
+                    <i class="glyphicon glyphicon-remove"></i>&nbsp;{{keyword}}
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-5 text-right">
+                <button class="btn btn-success">Save</button>
             </div>
         </div>
     </form>

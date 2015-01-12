@@ -14,6 +14,7 @@
         vm.getCapabilities = getCapabilities;
         vm.keyword = '';
         vm.mapserver = { version: '1.3.0', keywords: [] };
+        vm.save = save;
         vm.wmsVersions = ['1.3.0','1.1.1','1.1.0'];
 
         activate();
@@ -54,6 +55,10 @@
             }).catch(function(){
                 $log.warn('Error while retrieving capabilities.');
             });
+        }
+
+        function save(){
+            console.log('save');
         }
     }
 }());
