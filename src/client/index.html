@@ -11,10 +11,9 @@
 
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" />
 </head>
-<body>
-    <form class="form-horizontal" ng-controller="MapServer as vm" name="mapserverForm">
+<body class="container-fluid">
+    <form class="form-horizontal" ng-controller="MapServer as vm" name="mapserverForm" novalidate>
         <div class="form-group">
-            <!--http://ows.gis.rotterdam.nl/cgi-bin/mapserv.exe?map=d:\gwr\webdata\mapserver\map\schoon_pub.map-->
             <label for="mapserverUrlInput" class="col-sm-1 control-label">Location</label>
             <div class="col-sm-4">
                 <input id="mapserverUrlInput"
@@ -27,7 +26,76 @@
                        required
                        tb-is-alive />
             </div>
-            <button type="button" class="btn btn-success" ng-disabled="mapserverForm.mapserverUrlInput.$invalid || mapserverForm.mapserverUrlInput.$pending">Discover</button>
+        </div>
+        <div class="form-group">
+            <label for="wmsVersionInput" class="col-sm-1 control-label">Version</label>
+            <div class="col-sm-1">
+                <select id="wmsVersionInput"
+                        name="wmsVersionInput"
+                        class="form-control"
+                        ng-options="version as version for version in vm.wmsVersions"
+                        ng-model="vm.mapserver.version">
+                </select>
+            </div>
+            <button class="btn btn-primary"
+                    ng-disabled="mapserverForm.mapserverUrlInput.$invalid || mapserverForm.mapserverUrlInput.$pending"
+                    ng-click="vm.getCapabilities()">
+                Discover
+            </button>
+        </div>
+        <div class="form-group">
+            <label for="mapserverTitleInput" class="col-sm-1 control-label">Title</label>
+            <div class="col-sm-4">
+                <input id="mapserverTitleInput"
+                       name="mapserverTitleInput"
+                       placeholder="Title of the server"
+                       class="form-control"
+                       ng-model="vm.mapserver.title"
+                       required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="mapserverAbstractTextArea" class="col-sm-1 control-label">Description</label>
+            <div class="col-sm-4">
+                <textarea id="mapserverAbstractTextArea"
+                          name="mapserverAbstractTextArea"
+                          placeholder="Description of the server"
+                          class="form-control"
+                          ng-model="vm.mapserver.abstract"
+                          rows="3"
+                          style="resize: none"
+                          required>
+                </textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="mapserverKeywordsInput" class="col-sm-1 control-label">Keywords</label>
+            <div class="col-sm-1">
+                <input id="mapserverKeywordsInput"
+                          name="mapserverKeywordsInput"
+                          placeholder="Add one"
+                          class="form-control"
+                          ng-model="vm.keyword">
+                </input>
+            </div>
+            <button class="btn btn-primary"
+                    ng-click="vm.addKeyword()">
+                Add
+            </button>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-4">
+                <div>
+                    <button
+                            class="btn btn-info btn-xs"
+                            style="margin:2px;"
+                            ng-repeat="keyword in vm.mapserver.keywords | orderBy"
+                            ng-click="vm.deleteKeyword(keyword)">
+                        <i class="glyphicon glyphicon-remove"></i>&nbsp;{{keyword}}
+                    </button>
+                </div>
+            </div>
         </div>
     </form>
 

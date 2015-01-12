@@ -40,7 +40,7 @@
         }
 
         it('should set the input valid if the url exists', function(){
-            spyOn(mapserverService, 'isAlive').and.returnValue($q.when({ data: { isAlive: true } }));
+            spyOn(mapserverService, 'isAlive').and.returnValue($q.when({ isAlive: true }));
 
             createDirective();
 
@@ -48,7 +48,7 @@
         });
 
         it('should set the input invalid if the url does not exists', function(){
-            spyOn(mapserverService, 'isAlive').and.returnValue($q.when({ data: { isAlive: false } }));
+            spyOn(mapserverService, 'isAlive').and.returnValue($q.when({ isAlive: false }));
 
             createDirective();
 
@@ -56,7 +56,7 @@
         });
 
         it('should set the input invalid if an error occurs', function(){
-            $httpBackend.when('POST', '/api/mapserver/isalive').respond(400);
+            $httpBackend.when('POST').respond(400);
 
             createDirective();
             $httpBackend.flush();

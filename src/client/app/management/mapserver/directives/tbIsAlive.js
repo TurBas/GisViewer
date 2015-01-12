@@ -26,7 +26,7 @@
 
                 mapserverService.isAlive(modelValue)
                     .then(function(resp) {
-                        if (resp.data.isAlive){
+                        if (resp.isAlive){
                             deferred.resolve();
                         } else {
                             deferred.reject();
