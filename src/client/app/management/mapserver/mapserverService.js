@@ -9,7 +9,8 @@
     function mapserverService($http){
         var service = {
             getCapabilities: getCapabilities,
-            isAlive: isAlive
+            isAlive: isAlive,
+            save: save
         };
         return service;
 
@@ -26,6 +27,12 @@
 
         function isAlive(url){
             return $http.post('/api/mapserver/isalive', {url: encodeURI(url)}).then(function(response){
+                return response.data;
+            });
+        }
+
+        function save(mapserver){
+            return $http.post('/api/mapserver', {mapserver: mapserver}).then(function(response){
                 return response.data;
             });
         }

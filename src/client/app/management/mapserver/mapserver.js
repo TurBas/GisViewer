@@ -58,7 +58,11 @@
         }
 
         function save(){
-            console.log('save');
+            mapserverService.save(vm.mapserver).then(function(response){
+                console.log(response);
+            }).catch(function(err){
+                console.log('ERR', err);
+            });
         }
     }
 }());
