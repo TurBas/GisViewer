@@ -19,6 +19,8 @@
 
         return directive;
 
+        /////////////////
+
         function link(scope, element, attrs, ngModel)
         {
             ngModel.$asyncValidators.alive = function(modelValue) {

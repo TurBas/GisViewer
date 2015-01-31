@@ -7,9 +7,10 @@
     var capabilitiesParser = helpers.capabilitiesParser;
 
     mapserverController.init = function(app){
-        app.post('/api/mapserver/isalive', isAlive);
-        app.post('/api/mapserver/capabilities', getCapabilities);
+        app.get('/api/mapserver', getAllMapservers);
         app.post('/api/mapserver/', addMapserver);
+        app.post('/api/mapserver/capabilities', getCapabilities);
+        app.post('/api/mapserver/isalive', isAlive);
 
         /////////////////
 
@@ -84,6 +85,19 @@
                 } else {
                     res.set('Content-Type', 'application/json');
                     res.status(201).send(result);
+                }
+            });
+        }
+
+        function getAllMapservers(req, res){
+            repository.getAll(function(err, result){
+                res.set('Content-Type', 'application/json');
+                if (err)
+                {
+                    res.status(400).send(err);
+                } else {
+                    res.set('Content-Type', 'application/json');
+                    res.status(200).send(result);
                 }
             });
         }

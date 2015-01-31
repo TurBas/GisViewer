@@ -3,10 +3,10 @@
 
     angular
         .module('app')
-        .controller('MapServer', MapServer);
+        .controller('MapServerDetails', MapServerDetails);
 
     /* @ngInject */
-    function MapServer(mapserverService, $log) {
+    function MapServerDetails(mapserverService, $log) {
 
         var vm = this;
         vm.addKeyword = addKeyword;
@@ -18,6 +18,8 @@
         vm.wmsVersions = ['1.3.0','1.1.1','1.1.0'];
 
         activate();
+
+        /////////////////
 
         function activate() {
 

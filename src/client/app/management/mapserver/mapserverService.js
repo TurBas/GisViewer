@@ -8,11 +8,14 @@
     /* @ngInject */
     function mapserverService($http){
         var service = {
+            getAll: getAll,
             getCapabilities: getCapabilities,
             isAlive: isAlive,
             save: save
         };
         return service;
+
+        /////////////////
 
         function getCapabilities(url, version){
             var data = {
@@ -33,6 +36,12 @@
 
         function save(mapserver){
             return $http.post('/api/mapserver', {mapserver: mapserver}).then(function(response){
+                return response.data;
+            });
+        }
+
+        function getAll() {
+            return $http.get('/api/mapserver').then(function(response){
                 return response.data;
             });
         }

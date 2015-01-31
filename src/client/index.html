@@ -12,10 +12,18 @@
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body class="container-fluid">
-    <form class="form-horizontal" ng-controller="MapServer as vm" name="mapserverForm" ng-submit="vm.save()">
+    <div class="col-md-3" ng-controller="MapServers as vm">
+        <div ng-repeat="mapserver in vm.mapservers">
+            <div class="well">
+                <span>{{ mapserver.title }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <form class="form-horizontal" ng-controller="MapServerDetails as vm" name="mapserverForm" ng-submit="vm.save()">
         <div class="form-group">
-            <label for="mapserverUrlInput" class="col-sm-1 control-label">Location</label>
-            <div class="col-sm-4">
+            <label for="mapserverUrlInput" class="col-md-1 control-label">Location</label>
+            <div class="col-md-4">
                 <input id="mapserverUrlInput"
                        name="mapserverUrlInput"
                        placeholder="Insert URL of WebMapServer"
@@ -28,8 +36,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="wmsVersionInput" class="col-sm-1 control-label">Version</label>
-            <div class="col-sm-1">
+            <label for="wmsVersionInput" class="col-md-1 control-label">Version</label>
+            <div class="col-md-1">
                 <select id="wmsVersionInput"
                         name="wmsVersionInput"
                         class="form-control"
@@ -45,8 +53,8 @@
             </button>
         </div>
         <div class="form-group">
-            <label for="mapserverTitleInput" class="col-sm-1 control-label">Title</label>
-            <div class="col-sm-4">
+            <label for="mapserverTitleInput" class="col-md-1 control-label">Title</label>
+            <div class="col-md-4">
                 <input id="mapserverTitleInput"
                        name="mapserverTitleInput"
                        placeholder="Title of the server"
@@ -56,8 +64,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="mapserverAbstractTextArea" class="col-sm-1 control-label">Description</label>
-            <div class="col-sm-4">
+            <label for="mapserverAbstractTextArea" class="col-md-1 control-label">Description</label>
+            <div class="col-md-4">
                 <textarea id="mapserverAbstractTextArea"
                           name="mapserverAbstractTextArea"
                           placeholder="Description of the server"
@@ -69,8 +77,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="mapserverKeywordsInput" class="col-sm-1 control-label">Keywords</label>
-            <div class="col-sm-1">
+            <label for="mapserverKeywordsInput" class="col-md-1 control-label">Keywords</label>
+            <div class="col-md-1">
                 <input id="mapserverKeywordsInput"
                           name="mapserverKeywordsInput"
                           placeholder="Add one"
@@ -85,8 +93,8 @@
             </button>
         </div>
         <div class="form-group" ng-if="vm.mapserver.keywords.length > 0">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-4">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
                 <button
                         class="btn btn-info btn-xs"
                         style="margin:2px;"
@@ -97,12 +105,12 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-5 text-right">
+            <div class="col-md-5 text-right">
                 <button class="btn btn-success">Save</button>
             </div>
         </div>
     </form>
-
+    </div>
 
     <!-- Vendor scripts -->
     <script src="../../bower_components/jquery/dist/jquery.js"></script>
@@ -113,7 +121,8 @@
     <script src="../../src/client/app/app.module.js"></script>
 
     <!-- Management -->
-    <script src="../../src/client/app/management/mapserver/mapserver.js"></script>
+    <script src="../../src/client/app/management/mapserver/mapservers.js"></script>
+    <script src="../../src/client/app/management/mapserver/mapserverDetails.js"></script>
     <script src="../../src/client/app/management/mapserver/mapserverService.js"></script>
 
     <!-- Widgets -->
